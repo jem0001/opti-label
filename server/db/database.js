@@ -12,13 +12,13 @@ const pool = mysql
   .promise();
 
 const getRacks = async () => {
-  const [rows] = await pool.query("SELECT * FROM tbl_seiren_rackMasterList");
+  const [rows] = await pool.query("SELECT * FROM tbl_seiren_rackmasterlist");
   return rows;
 };
 
 const getRack = async (id) => {
   const [rows] = await pool.query(
-    `SELECT * FROM tbl_seiren_rackMasterList WHERE rack_id = ?`,
+    `SELECT * FROM tbl_seiren_rackmasterlist WHERE rack_id = ?`,
     [id]
   );
   return rows;
