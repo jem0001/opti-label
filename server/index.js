@@ -24,6 +24,4 @@ app.use(errorHandler);
 
 // SERVER CONNECTION
 const port = process.env.PORT || 3000;
-app.listen(port, "0.0.0.0", () =>
-  console.log("Server Listening on Port " + port)
-);
+app.listen(port, () => console.log("Server Listening on Port " + port));
