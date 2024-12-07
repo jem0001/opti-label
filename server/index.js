@@ -1,9 +1,11 @@
 const express = require("express");
 const cors = require("cors");
-const rackMasterListRouter = require("./routes/rackMasterList");
 const notFound = require("./middlewares/not-found");
 const errorHandler = require("./middlewares/error-handler");
 const categoriesRouter = require("./routes/categories");
+const authRouter = require("./routes/auth");
+const authentication = require("./middlewares/authentication");
+const productsStatRouter = require("./routes/productsStat");
 require("express-async-errors");
 require("dotenv").config();
 
@@ -20,7 +22,8 @@ app.get("/", async (req, res) => {
 });
 
 app.use("/api/v1/categories", categoriesRouter);
-app.use("/api/v1/rack-master-list", rackMasterListRouter);
+app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/products-stat", authentication, productsStatRouter);
 
 app.use(notFound);
 app.use(errorHandler);

@@ -24,4 +24,31 @@ const getRack = async (id) => {
   return rows;
 };
 
-module.exports = { getRacks, getRack };
+const getUser = async (username) => {
+  const [[user] = rows] = await pool.query(
+    `SELECT * FROM ctech_users WHERE username = ?`,
+    [username]
+  );
+
+  return user;
+};
+
+const getUserWithIdOf = async (id) => {
+  const [[user] = rows] = await pool.query(
+    `SELECT * FROM ctech_users WHERE id = ?`,
+    [id]
+  );
+
+  return user;
+};
+
+const addProduct = async (barcode, type, sub_type, user) => {
+  const [rows] = await pool.query(
+    "INSERT INTO `ctech_products_stat` (`barcode`, `type`, `sub_type`, `user`) VALUES (?,?,?,?)",
+    [barcode, type, sub_type, user]
+  );
+
+  return rows;
+};
+
+module.exports = { getRacks, getRack, getUser, addProduct, getUserWithIdOf };
