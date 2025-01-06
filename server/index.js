@@ -2,11 +2,12 @@ const express = require("express");
 const cors = require("cors");
 const notFound = require("./middlewares/not-found");
 const errorHandler = require("./middlewares/error-handler");
-const categoriesRouter = require("./routes/categories");
 const authRouter = require("./routes/auth");
 const authentication = require("./middlewares/authentication");
 const productsStatRouter = require("./routes/productsStat");
 const productsStatNoAuthRouter = require("./routes/productsStatNoAuth");
+const productsListNoAuthRouter = require("./routes/productsListNoAuth");
+
 require("express-async-errors");
 require("dotenv").config();
 
@@ -22,10 +23,10 @@ app.get("/", async (req, res) => {
   console.log("hello from optilabel");
 });
 
-app.use("/api/v1/categories", categoriesRouter);
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/products-stat", authentication, productsStatRouter);
 app.use("/api/v1/products-stat-no-auth", productsStatNoAuthRouter);
+app.use("/api/v1/products-list-no-auth", productsListNoAuthRouter);
 
 app.use(notFound);
 app.use(errorHandler);

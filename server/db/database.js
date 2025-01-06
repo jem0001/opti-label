@@ -51,4 +51,20 @@ const addProduct = async (barcode, type, sub_type, user) => {
   return rows;
 };
 
-module.exports = { getRacks, getRack, getUser, addProduct, getUserWithIdOf };
+const getProductsList = async (barcode) => {
+  const [rows] = await pool.query(
+    "SELECT  * FROM `ctech_products_list` WHERE barcode = ?",
+    [barcode]
+  );
+
+  return rows;
+};
+
+module.exports = {
+  getRacks,
+  getRack,
+  getUser,
+  addProduct,
+  getUserWithIdOf,
+  getProductsList,
+};
